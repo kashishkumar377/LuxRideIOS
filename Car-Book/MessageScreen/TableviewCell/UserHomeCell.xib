@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="76" id="KGk-i7-Jjw" customClass="UserHomeCell" customModule="Car_Book" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="91I-Ui-Sch" customClass="DesignableView" customModule="Car_Book" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="5" width="320" height="66"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_user" translatesAutoresizingMaskIntoConstraints="NO" id="Alb-3r-era">
+                                <rect key="frame" x="15" y="8" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="TCF-ny-ZdK"/>
+                                    <constraint firstAttribute="width" constant="50" id="V6V-hU-j8t"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Davy Johnson" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97L-az-PS0">
+                                <rect key="frame" x="80" y="10" width="125.33333333333331" height="21"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Hey Whatsapp" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nR-Up-Mhh">
+                                <rect key="frame" x="80" y="39" width="111.66666666666669" height="18.333333333333329"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="5m ago" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7Y-FK-Gql">
+                                <rect key="frame" x="260.66666666666669" y="10" width="49.333333333333314" height="16"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
+                                <color key="textColor" red="0.66666666666666663" green="0.65098039215686276" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9WF-Qr-jXm" customClass="DesignableView" customModule="Car_Book" customModuleProvider="target">
+                                <rect key="frame" x="290" y="28.333333333333336" width="20" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8n-7M-r2H">
+                                        <rect key="frame" x="2" y="2" width="16" height="16"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="11"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="1aW-PK-Km8"/>
+                                    <constraint firstItem="d8n-7M-r2H" firstAttribute="leading" secondItem="9WF-Qr-jXm" secondAttribute="leading" constant="2" id="9Mu-5m-W1D"/>
+                                    <constraint firstAttribute="height" constant="20" id="A3H-AH-sjn"/>
+                                    <constraint firstAttribute="trailing" secondItem="d8n-7M-r2H" secondAttribute="trailing" constant="2" id="J71-im-YG4"/>
+                                    <constraint firstAttribute="bottom" secondItem="d8n-7M-r2H" secondAttribute="bottom" constant="2" id="pC3-Us-a3m"/>
+                                    <constraint firstItem="d8n-7M-r2H" firstAttribute="top" secondItem="9WF-Qr-jXm" secondAttribute="top" constant="2" id="uFq-Od-WVQ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusValue">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9WF-Qr-jXm" secondAttribute="trailing" constant="10" id="0yA-Bg-Eyx"/>
+                            <constraint firstItem="97L-az-PS0" firstAttribute="top" secondItem="91I-Ui-Sch" secondAttribute="top" constant="10" id="21p-cF-SyM"/>
+                            <constraint firstItem="Alb-3r-era" firstAttribute="leading" secondItem="91I-Ui-Sch" secondAttribute="leading" constant="15" id="4ho-63-gMc"/>
+                            <constraint firstItem="Alb-3r-era" firstAttribute="centerY" secondItem="91I-Ui-Sch" secondAttribute="centerY" id="6Zz-Nk-2XX"/>
+                            <constraint firstItem="97L-az-PS0" firstAttribute="leading" secondItem="Alb-3r-era" secondAttribute="trailing" constant="15" id="Cdh-59-Opc"/>
+                            <constraint firstItem="3nR-Up-Mhh" firstAttribute="leading" secondItem="97L-az-PS0" secondAttribute="leading" id="Rzx-95-UAA"/>
+                            <constraint firstItem="3nR-Up-Mhh" firstAttribute="top" secondItem="97L-az-PS0" secondAttribute="bottom" constant="8" id="cug-lI-fyU"/>
+                            <constraint firstItem="9WF-Qr-jXm" firstAttribute="centerY" secondItem="3nR-Up-Mhh" secondAttribute="centerY" constant="-10" id="jGR-Xj-gsA"/>
+                            <constraint firstItem="t7Y-FK-Gql" firstAttribute="top" secondItem="91I-Ui-Sch" secondAttribute="top" constant="10" id="mcL-0B-LRR"/>
+                            <constraint firstAttribute="trailing" secondItem="t7Y-FK-Gql" secondAttribute="trailing" constant="10" id="rCm-EV-c72"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusValue">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="91I-Ui-Sch" secondAttribute="trailing" id="EF0-Jf-LFI"/>
+                    <constraint firstAttribute="bottom" secondItem="91I-Ui-Sch" secondAttribute="bottom" constant="5" id="LAY-Vv-ID2"/>
+                    <constraint firstItem="91I-Ui-Sch" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="VOZ-8G-pzy"/>
+                    <constraint firstItem="91I-Ui-Sch" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="go9-bJ-KuP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="img" destination="Alb-3r-era" id="5De-JF-i0V"/>
+                <outlet property="lblTitle" destination="97L-az-PS0" id="JHb-Fk-Z3V"/>
+            </connections>
+            <point key="canvasLocation" x="-50.381679389312978" y="0.0"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_user" width="1010" height="968"/>
+    </resources>
+</document>
