@@ -7,8 +7,9 @@
 
 import UIKit
 
-class SignInSignUpViewController: UIViewController {
+class SignInSignUpViewController: BaseClassVC {
 
+    // MARK: - IBOutlets
     @IBOutlet var viewSignUp: UIView!
     @IBOutlet var viewSignIn: UIView!
     @IBOutlet var txtFieldFirstName: UITextField!
@@ -28,11 +29,19 @@ class SignInSignUpViewController: UIViewController {
     @IBOutlet var imgTopBackground: UIImageView!
     @IBOutlet var viewMobile: UIView!
     
+    // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
+    // MARK: - ViewWillAPPear
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    // MARK: - Methods
     func setupUI() {
         txtFieldFirstName.layer.cornerRadius = 10
         txtFieldLastName.layer.cornerRadius = 10
@@ -74,10 +83,21 @@ class SignInSignUpViewController: UIViewController {
         viewBackground.layer.shadowOffset = .zero
         viewBackground.layer.shadowRadius = 5
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+    
+    func signUpAPI() {
+        reqUser.firstName = txtFieldFirstName.text ?? ""
+        reqUser.lastName = txtFieldLastName.text ?? ""
+        reqUser.email = txtFieldEmailSignUp.text ?? ""
+        reqUser.phone = txtFieldMobileNo.text ?? ""
+        reqUser.deviceType = Constant.UserDeviceConstant.DeviceType
+        reqUser.fcmToken = Constant.UserDeviceConstant.DeviceToken
+        reqUser.password = txtFieldPassword.text ?? ""
+        
     }
+}
+    
+    // MARK: - IBActions
+extension SignInSignUpViewController{
     
     @IBAction func onBtnSignUpClicked(_ sender: UIButton) {
     
@@ -107,13 +127,5 @@ class SignInSignUpViewController: UIViewController {
             self.btnSignUpHeader.setTitleColor(UIColor(red:200/255, green:199/255, blue:204/255, alpha: 1), for: .normal)
             self.btnSignInHeader.setTitleColor(UIColor(red:38/255, green:38/255, blue:40/255, alpha: 1), for: .normal)
         }
-    }
-}
-
-extension UITextField {
-    func setLeftPaddingPoints(_ amount:CGFloat){
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-        self.leftView = paddingView
-        self.leftViewMode = .always
     }
 }
