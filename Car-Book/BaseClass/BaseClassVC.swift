@@ -9,6 +9,9 @@ import UIKit
 
 class BaseClassVC: UIViewController {
     
+    
+    var reqUser = User.new()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

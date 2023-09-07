@@ -11,11 +11,9 @@ import UIKit
 
 class APiConstants {
 
-    static let baseUrl = "http://wehandleyourpets.com/api/"
-
-    static let baseUrlImg = "http://kaizendev.work/public/uploads/images/"
-    static let loginUrl = baseUrl + "user/signin"
-    static let signUp = baseUrl + "user/signup"
+    static let baseUrl = "http://18.118.198.144:8080/carRental/"
+    static let loginUrl = baseUrl + "signin"
+    static let signUp = baseUrl + "signup"
 
     static let ForgotPassword = baseUrl + "forgot-password"
     static let changePassword = baseUrl + "auth/updateMyPassword"
