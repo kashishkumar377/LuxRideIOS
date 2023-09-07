@@ -7,7 +7,7 @@
 
 import UIKit
 
-class searchListViewController: UIViewController {
+class searchListViewController: BaseClassVC {
 
     @IBOutlet var tblSearchCar: UITableView!
     @IBOutlet var viewSearch: UIView!

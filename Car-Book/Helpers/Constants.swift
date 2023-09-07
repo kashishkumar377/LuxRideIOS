@@ -94,9 +94,9 @@ class Constant {
             case phoneNumber
         }
         
-        struct UserDefaultConstant {
+        struct UserDeviceConstant {
             static let DeviceToken = UserDefaults.standard.value(forKey: "token") as? String
-            static let DeviceId = UIDevice.current.identifierForVendor!.uuidString
+            static let DeviceType = "iOS"
 
         }
         
