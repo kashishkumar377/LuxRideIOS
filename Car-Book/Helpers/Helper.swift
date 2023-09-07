@@ -67,6 +67,12 @@ extension UIViewController {
         }
         return arr
     }
+    
+    func showAlertMsg(_ msg:String){
+        let alert = UIAlertController(title: "LuxRide", message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default))
+        self.present(alert, animated: true)
+    }
 }
     
 extension UIView {
@@ -637,12 +643,6 @@ extension String {
     }
     
 }
-
-
-
-
-
-
 
 
 

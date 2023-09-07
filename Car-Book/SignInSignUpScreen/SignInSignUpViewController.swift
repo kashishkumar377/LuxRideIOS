@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CountryPickerIOS
 class SignInSignUpViewController: BaseClassVC {
 
     // MARK: - IBOutlets
@@ -29,10 +29,15 @@ class SignInSignUpViewController: BaseClassVC {
     @IBOutlet var imgTopBackground: UIImageView!
     @IBOutlet var viewMobile: UIView!
     
+    // MARK: - Properties
+    var countryPickerView: CountryPickerView?
+    var code = "+234"
+    
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setCountryTxtField()
     }
     
     // MARK: - ViewWillAPPear
@@ -42,6 +47,13 @@ class SignInSignUpViewController: BaseClassVC {
     }
     
     // MARK: - Methods
+    func setCountryTxtField() {
+        countryPickerView = CountryPickerView(frame: CGRect(x: 0, y: 0, width: 120, height: txtFieldMobileNo.bounds.height))
+        countryPickerView?.delegate = self
+        txtFieldMobileNo.leftView = countryPickerView
+        txtFieldMobileNo.leftViewMode = .always
+    }
+    
     func setupUI() {
         txtFieldFirstName.layer.cornerRadius = 10
         txtFieldLastName.layer.cornerRadius = 10
@@ -85,6 +97,7 @@ class SignInSignUpViewController: BaseClassVC {
     }
     
     func signUpAPI() {
+        self.view.showLoadingIndicator()
         reqUser.firstName = txtFieldFirstName.text ?? ""
         reqUser.lastName = txtFieldLastName.text ?? ""
         reqUser.email = txtFieldEmailSignUp.text ?? ""
@@ -92,7 +105,32 @@ class SignInSignUpViewController: BaseClassVC {
         reqUser.deviceType = Constant.UserDeviceConstant.DeviceType
         reqUser.fcmToken = Constant.UserDeviceConstant.DeviceToken
         reqUser.password = txtFieldPassword.text ?? ""
-        
+        reqUser.countryCode = code
+        reqUser.signUpType = "email"
+        reqUser.signUp { [self] loginUser, errMsg, errCode in
+            self.view.hideLoadingIndicator()
+            if errCode == 200 {
+                self.showAlertMsg(errMsg)
+            } else {
+                self.showAlertMsg(errMsg)
+            }
+        }
+    }
+    
+    func signInAPI(){
+        self.view.showLoadingIndicator()
+        reqUser.email = txtFieldEmailSignIn.text ?? ""
+        reqUser.deviceType = Constant.UserDeviceConstant.DeviceType
+        reqUser.fcmToken = Constant.UserDeviceConstant.DeviceToken
+        reqUser.password = txtFieldPasswordSignIn.text ?? ""
+        reqUser.signIn {loginUser, errMsg, errCode in
+            self.view.hideLoadingIndicator()
+            if errCode == 200 {
+                self.showAlertMsg(errMsg)
+            } else {
+                self.showAlertMsg(errMsg)
+            }
+        }
     }
 }
     
@@ -100,13 +138,16 @@ class SignInSignUpViewController: BaseClassVC {
 extension SignInSignUpViewController{
     
     @IBAction func onBtnSignUpClicked(_ sender: UIButton) {
-    
+        signUpAPI()
     }
     
     @IBAction func onBtnSignInClicked(_ sender: UIButton) {
-        let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
-        let targetVC = sb.instantiateViewController(withIdentifier: "PersonalInfoViewController")
-        self.navigationController?.pushViewController(targetVC, animated: true)
+        signInAPI()
+        /*
+         let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
+         let targetVC = sb.instantiateViewController(withIdentifier: "PersonalInfoViewController")
+         self.navigationController?.pushViewController(targetVC, animated: true)
+         */
     }
    
     @IBAction func onBtnSignInSignUpOptionClicked(_ sender: UIButton) {
@@ -129,3 +170,19 @@ extension SignInSignUpViewController{
         }
     }
 }
+
+extension SignInSignUpViewController : CountryPickerListDelegate {
+    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
+        debugPrint("Selected country \(country)")
+        code  =  country.code
+    }
+    
+    func showCountryList(output: CountryPickerListOutput) {
+        let countryList = CountryPickerList(style: .insetGrouped)
+        countryList.output = output
+        self.navigationController?.present(countryList, animated: true)
+    }
+    
+    
+}
+

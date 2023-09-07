@@ -6,17 +6,19 @@
 //
 
 import UIKit
-
 class BaseClassVC: UIViewController {
     
-    
+    // MARK: - Properties
     var reqUser = User.new()
     
+    // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    
     func hideNavigate() {
         navigationController?.navigationBar.isHidden = true
     }
+
 }

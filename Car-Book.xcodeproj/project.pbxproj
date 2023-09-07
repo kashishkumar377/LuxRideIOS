@@ -128,6 +128,9 @@
 		D960D7C92A8C9ECB005DFB00 /* APiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960D7C42A8C9ECB005DFB00 /* APiConstants.swift */; };
 		D960D7CA2A8C9ECB005DFB00 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960D7C52A8C9ECB005DFB00 /* NetworkManager.swift */; };
 		D960D7CD2A8C9F89005DFB00 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960D7CC2A8C9F89005DFB00 /* UserModel.swift */; };
+		D9C1E22E2AA9D7160036B670 /* cooking.json in Resources */ = {isa = PBXBuildFile; fileRef = D9C1E22B2AA9D7160036B670 /* cooking.json */; };
+		D9C1E22F2AA9D7160036B670 /* ProgressIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9C1E22C2AA9D7160036B670 /* ProgressIndicator.xib */; };
+		D9C1E2302AA9D7160036B670 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1E22D2AA9D7160036B670 /* ProgressIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -277,6 +280,9 @@
 		D960D7C42A8C9ECB005DFB00 /* APiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APiConstants.swift; sourceTree = "<group>"; };
 		D960D7C52A8C9ECB005DFB00 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D960D7CC2A8C9F89005DFB00 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		D9C1E22B2AA9D7160036B670 /* cooking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cooking.json; sourceTree = "<group>"; };
+		D9C1E22C2AA9D7160036B670 /* ProgressIndicator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressIndicator.xib; sourceTree = "<group>"; };
+		D9C1E22D2AA9D7160036B670 /* ProgressIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		DBE6E3B56242431911FEF76F /* Pods_Car_Book.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Car_Book.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B5CBA573693A7BC26DB7FE /* Pods_Car_BookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Car_BookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -636,6 +642,7 @@
 		CEDA47A42A8A2C850031E598 /* Car-Book */ = {
 			isa = PBXGroup;
 			children = (
+				D9C1E2312AA9D71A0036B670 /* Progress */,
 				254247452A98D6EB00A6B98F /* PersonalInfoScreen */,
 				254247402A98CA6D00A6B98F /* HostTripCell */,
 				2542473B2A98C0CE00A6B98F /* ReviewScreens */,
@@ -764,6 +771,24 @@
 				D960D7CC2A8C9F89005DFB00 /* UserModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D9C1E22A2AA9D7150036B670 /* progressIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				D9C1E22B2AA9D7160036B670 /* cooking.json */,
+				D9C1E22C2AA9D7160036B670 /* ProgressIndicator.xib */,
+				D9C1E22D2AA9D7160036B670 /* ProgressIndicator.swift */,
+			);
+			path = progressIndicator;
+			sourceTree = "<group>";
+		};
+		D9C1E2312AA9D71A0036B670 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				D9C1E22A2AA9D7150036B670 /* progressIndicator */,
+			);
+			name = Progress;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -895,6 +920,7 @@
 				258604172A8FD100006D548F /* Montserrat-Regular.ttf in Resources */,
 				258603DF2A8E4CE0006D548F /* LatestCarCollectionViewCell.xib in Resources */,
 				2542470E2A96455B00A6B98F /* regulationsTableViewCell.xib in Resources */,
+				D9C1E22F2AA9D7160036B670 /* ProgressIndicator.xib in Resources */,
 				CEDA47B22A8A2C8A0031E598 /* Assets.xcassets in Resources */,
 				CEDA47FB2A8A2FF20031E598 /* Poppins-Medium.ttf in Resources */,
 				CEDA47EE2A8A2FF20031E598 /* Poppins-ExtraBoldItalic.ttf in Resources */,
@@ -917,6 +943,7 @@
 				258604292A90B6FD006D548F /* carBasicDetailTableViewCell.xib in Resources */,
 				258604182A8FD100006D548F /* Montserrat-Italic.ttf in Resources */,
 				258604662A94C525006D548F /* UserHomeCell.xib in Resources */,
+				D9C1E22E2AA9D7160036B670 /* cooking.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,6 +1137,7 @@
 				258604222A90ADD7006D548F /* FilterMakeModelViewControoler+TableView.swift in Sources */,
 				CEDA47B02A8A2C850031E598 /* Car_Book.xcdatamodeld in Sources */,
 				258604032A8FC6A6006D548F /* ProfileViewController.swift in Sources */,
+				D9C1E2302AA9D7160036B670 /* ProgressIndicator.swift in Sources */,
 				258604412A922A06006D548F /* pickDropTableViewCell.swift in Sources */,
 				D960D7C92A8C9ECB005DFB00 /* APiConstants.swift in Sources */,
 				258604392A92200E006D548F /* CarDetailViewController.swift in Sources */,
@@ -1334,6 +1362,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Car-Book/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Luxe Ride";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "By accessing your location, this app can find cars nearby you.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "By accessing your location, this app can find cars nearby you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1344,7 +1374,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "carbook.com.Car-Book";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.luxride;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1364,6 +1394,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Car-Book/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Luxe Ride";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "By accessing your location, this app can find cars nearby you.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "By accessing your location, this app can find cars nearby you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1374,7 +1406,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "carbook.com.Car-Book";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.luxride;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

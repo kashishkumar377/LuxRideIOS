@@ -11,7 +11,6 @@ import UIKit
 
 
 
-
 class User : Mappable {
   
     var firstName : String?
@@ -22,11 +21,26 @@ class User : Mappable {
     var role : String?
     var deviceType : String?
     var fcmToken : String?
+    var countryCode : String?
+    var data : UserData?
+    var success : Bool?
+    var message : String?
+    var token : String?
+    var signUpType : String?
+    var socaialId : String?
+       
     required init?(map: Map) {
         
     }
     
     func mapping(map: Map) {
+        socaialId <- map["socaialId"]
+        signUpType <- map["signUpType"]
+        data <- map["data"]
+        success <- map["success"]
+        message <- map["message"]
+        token <- map["token"]
+        countryCode <-  map["countryCode"]
         firstName <- map["firstName"]
         lastName <- map["lastName"]
         email <- map["email"]
@@ -81,19 +95,15 @@ class User : Mappable {
         UserDefaults.standard.synchronize()
     }
     
-    
     func signIn(callBack:((_ loginUser:User?,_ errMsg:String,_ errCode:Int)->Void)!) {
         NetworkManager.sendRequest(urlPath: APiConstants.loginUrl, type: .post, parms: self.toJSON()) { responseObject, suces in
-            
             if (responseObject["success"] as? Int ?? 0) == 1{
-                let user = Mapper<User>().map(JSON: responseObject["data"] as? [String:Any] ?? [:])
+                let user = Mapper<User>().map(JSON: responseObject)
                 User.curentUser = user
-                UserDefaults.standard.set(responseObject["token"] as? String ?? "", forKey: "token")
                 callBack(user,responseObject["message"] as? String ?? "",200)
             } else {
                 callBack(nil,responseObject["message"] as? String ?? "",Constant.APIResponseCodes.statusCodeInternalServerError)
             }
-            
         } faliure: { errMsg, errCode in
             callBack(nil,errMsg,errCode)
         }
@@ -115,15 +125,13 @@ class User : Mappable {
     }
     
     
-    func signUp(_ img:Data?,callBack:((_ loginUser:User?,_ errMsg:String,_ errCode:Int)->Void)!) {
+    func signUp(callBack:((_ loginUser:User?,_ errMsg:String,_ errCode:Int)->Void)!) {
         signupValidation { errMsg, suc in
             if suc {
                 NetworkManager.sendRequest(urlPath: APiConstants.signUp, type: .post, parms: self.toJSON()) { responseObject, suces in
-                    
                     if (responseObject["success"] as? Int ?? 0) == 1{
-                        let user = Mapper<User>().map(JSON: responseObject["data"] as? [String:Any] ?? [:])
+                        let user = Mapper<User>().map(JSON: responseObject)
                         User.curentUser = user
-                        UserDefaults.standard.set(responseObject["token"] as? String ?? "", forKey: "token")
                         callBack(user,responseObject["message"] as? String ?? "",200)
                     } else {
                         callBack(nil,responseObject["message"] as? String ?? "",Constant.APIResponseCodes.statusCodeInternalServerError)
@@ -147,12 +155,48 @@ class User : Mappable {
             callBack("Please enter your email",false)
         } else if (self.email?.isValidEmail()) == false {
             callBack("Please enter your valid email",false)
+        } else if self.password == "" {
+            callBack("Please enter your password",false)
         } else if self.phone == "" {
             callBack("Please enter your mobile number",false)
-        }  else if self.password == "" {
-            callBack("Please enter your password",false)
-        } else {
+        }  else {
             callBack("",true)
         }
     }
+}
+
+struct UserData : Mappable {
+    var firstName : String?
+    var lastName : String?
+    var email : String?
+    var phone : String?
+    var countryCode : String?
+    var password : String?
+    var deviceType : String?
+    var role : String?
+    var _id : String?
+    var createdAt : String?
+    var updatedAt : String?
+    var __v : Int?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        firstName <- map["firstName"]
+        lastName <- map["lastName"]
+        email <- map["email"]
+        phone <- map["phone"]
+        countryCode <- map["countryCode"]
+        password <- map["password"]
+        deviceType <- map["deviceType"]
+        role <- map["role"]
+        _id <- map["_id"]
+        createdAt <- map["createdAt"]
+        updatedAt <- map["updatedAt"]
+        __v <- map["__v"]
+    }
+
 }

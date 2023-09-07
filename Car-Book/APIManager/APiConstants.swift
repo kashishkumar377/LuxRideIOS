@@ -12,7 +12,7 @@ import UIKit
 class APiConstants {
 
     static let baseUrl = "http://18.118.198.144:8080/carRental/"
-    static let loginUrl = baseUrl + "signin"
+    static let loginUrl = baseUrl + "login"
     static let signUp = baseUrl + "signup"
 
     static let ForgotPassword = baseUrl + "forgot-password"

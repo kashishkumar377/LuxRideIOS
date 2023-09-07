@@ -95,8 +95,8 @@ class Constant {
         }
         
         struct UserDeviceConstant {
-            static let DeviceToken = UserDefaults.standard.value(forKey: "token") as? String
-            static let DeviceType = "iOS"
+            static let DeviceToken = UserDefaults.standard.value(forKey: "token") as? String ?? "TOKEN"
+            static let DeviceType = "ios"
 
         }
         
@@ -111,3 +111,22 @@ class Constant {
 
 }
 
+extension UIView {
+    func showLoadingIndicator() {
+        
+        ProgressIndicator.shared().show( at: self)
+       
+    }
+    
+    
+    
+    
+    func hideLoadingIndicator () {
+        
+     
+        if let indicator:ProgressIndicator = self.viewWithTag(19518) as? ProgressIndicator {
+            indicator.hide()
+            
+        }
+    }
+}

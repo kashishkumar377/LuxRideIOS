@@ -27,20 +27,21 @@ class NetworkManager: NSObject {
         
         
         var request = URLRequest.init(url:URL.init(string: urlPath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
-        // let headers = ["Content-Type": "application/json"]
-        let header = self.getJSONHeaderWithAcceesToken()
+    
+        let header = self.getJSONXAPiKey()
         request.httpMethod = type.rawValue
+     
         if !parms!.isEmpty {
             let postString = self.getPostString(params: parms!)
             request.httpBody = postString.data(using: .utf8)
-            //  request.httpBody = try? JSONSerialization.data(withJSONObject: parms ?? [:])
         }
         request.allHTTPHeaderFields = header
         print("APIURL-----------------",urlPath)
         print("PARAMS---------------------",parms!)
         print("header---------------------",header)
+   
         AF.request(request).responseJSON { response in
-           
+            
             switch response.result {
             case .success:
                 print(response)
@@ -80,7 +81,7 @@ class NetworkManager: NSObject {
          
          var request = URLRequest.init(url:URL.init(string: urlPath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         // let headers = ["Content-Type": "application/json"]
-         let header = self.getJSONHeaderWithAcceesToken()
+         let header = self.getJSONXAPiKey()
      
        
          request.httpMethod = type.rawValue
@@ -111,11 +112,13 @@ class NetworkManager: NSObject {
     static func getJSONHeaderWithAcceesToken() -> [String:String] {
         let token = UserDefaults.standard.value(forKey: "token") as? String ?? "Nil"
         return ["Authorization": "Bearer \(token)"]
+        
                 
     }
     
     static func getJSONXAPiKey() -> [String:String] {
-        return ["X-Api-Key":"-app.com"]
+        return ["Content-Type": "application/x-www-form-urlencoded"]
+        
     }
     
     class func uploadTo(_ isImg:Bool,imgVw:Data?,urlPath:String, paramName:String , param: [String : Any] , fileType:String ,success:((_ fileName:[String: Any]?,_ suces:Bool)->Void)!, faliure:((_ errCode:Int,_ errMsg:String)->Void)!) {
