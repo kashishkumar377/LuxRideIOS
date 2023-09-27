@@ -22,16 +22,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             return 500
         }
+      else if indexPath.row == 1  || indexPath.row == 2{
+          return 0
+      }
        else if indexPath.row == 3 || indexPath.row == 4 {
-            return 100
+            return 110
         }
         else if indexPath.row == 5 {
             return 150
         }
-        else if indexPath.row == 2 {
-            return 250
-        }
-       else if indexPath.row == 6 || indexPath.row == 1{
+
+      else if indexPath.row == 6  {
             return 60
         }else if indexPath.row == 8{
             return 250
@@ -46,16 +47,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let searachCell = tableView.dequeueReusableCell(withIdentifier: "searchCell") as! SearchTableViewCell
             searachCell.selectionStyle = .none
             searachCell.btnSearch.addTarget(self, action: #selector(self.onBtnSearchClicked), for: .touchUpInside)
+           
             return searachCell
         }
-        else if indexPath.row == 1 {
-            let headerCell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! HeaderTableViewCell
-            headerCell.selectionStyle = .none
-            return headerCell
-        }
+//        else if indexPath.row == 1 {
+//            let headerCell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! HeaderTableViewCell
+//            headerCell.selectionStyle = .none
+//            return headerCell
+//        }
         else if indexPath.row == 2 {
             let carModelCell = tableView.dequeueReusableCell(withIdentifier: "carCell") as! HomeCarTableViewCell
-            carModelCell.selectionStyle = .none
+           // carModelCell.selectionStyle = .none
             return carModelCell
         }
         else if indexPath.row == 3 {
@@ -78,7 +80,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             regulationCell.lblHeader.text = "Road Condition"
             regulationCell.lblDescription.text = "Be cautious on unfamiliar roads, and watch for hazards like potholes and road signs."
             regulationCell.imgHeader.image = UIImage(named: "icon_.rule")
-            regulationCell.viewLine.isHidden = false
+           // regulationCell.viewLine.isHidden = false
             return regulationCell
         }
         else if indexPath.row == 6 {
@@ -86,11 +88,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             headerCell.lblHeader.text = "Browse by Brand"
             headerCell.selectionStyle = .none
             return headerCell
-        } else if indexPath.row == 7 {
+        }
+          else if indexPath.row == 7 {
             let carModelCell = tableView.dequeueReusableCell(withIdentifier: "carModelCell") as! carModelTableViewCell
             carModelCell.selectionStyle = .none
+          carModelCell.carTypeArr = carNameArr
+          carModelCell.carModelCollectionView.reloadData()
             return carModelCell
-        }else {
+        }
+           else {
                 let regulationCell = tableView.dequeueReusableCell(withIdentifier: "carDriveCell") as! regulationsTableViewCell
                 regulationCell.selectionStyle = .none
                 regulationCell.imgHeader.layer.cornerRadius = 10

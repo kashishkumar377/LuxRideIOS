@@ -9,39 +9,23 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
 
-    @IBOutlet var btnView: UIButton!
+
     @IBOutlet var btnSearch: UIButton!
     @IBOutlet var viewSearch: UIView!
-    @IBOutlet var viewLuxry: UIView!
-    @IBOutlet var viewExecutive: UIView!
-    @IBOutlet var viewUtility: UIView!
-    @IBOutlet var viewBoat: UIView!
-    
+
+    @IBOutlet weak var carCollectionView: UICollectionView!
+
+    var carTypeArr = [CarTypeData]()
     override func awakeFromNib() {
         super.awakeFromNib()
+
+     // carCollectionView.delegate = self
+    //  carCollectionView.dataSource = self
+
         // Initialization code
         viewSearch.layer.cornerRadius = 10
-        btnView.layer.cornerRadius = 10
-        viewLuxry.layer.cornerRadius = 15
-        viewExecutive.layer.cornerRadius = 15
-        viewUtility.layer.cornerRadius = 15
-        viewBoat.layer.cornerRadius = 15
-        
-        viewLuxry.layer.shadowOpacity = 1
-        viewLuxry.layer.shadowOffset = .zero
-        viewLuxry.layer.shadowRadius = 0.5
-        
-        viewExecutive.layer.shadowOpacity = 1
-        viewExecutive.layer.shadowOffset = .zero
-        viewExecutive.layer.shadowRadius = 0.5
-        
-        viewUtility.layer.shadowOpacity = 1
-        viewUtility.layer.shadowOffset = .zero
-        viewUtility.layer.shadowRadius = 0.5
-        
-        viewBoat.layer.shadowOpacity = 1
-        viewBoat.layer.shadowOffset = .zero
-        viewBoat.layer.shadowRadius = 0.5
+      //  btnView.layer.cornerRadius = 10
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -51,3 +35,26 @@ class SearchTableViewCell: UITableViewCell {
     }
 
 }
+
+extension SearchTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+     return carTypeArr.count
+   }
+
+   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "carType", for: indexPath) as! carTypeCell
+     cell.lblCar.text = carTypeArr[indexPath.row].vehicleTypeName
+      // cell.btnModel.layer.cornerRadius = 10
+       return cell
+   }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+          return CGSize(width: 110, height: 110)
+      }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+          return 5
+      }
+
+}
+

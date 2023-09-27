@@ -49,9 +49,9 @@ public class CountryPickerView: NibView {
     private var _selectedCountry: Country?
     internal(set) public var selectedCountry: Country {
         get {
-            return _selectedCountry
-                ?? countries.first(where: { $0.code == "NG" }) /*"Locale.current.regionCode"*/
-                ?? countries.first!
+          return _selectedCountry ?? countries.first!
+//                ?? countries.first(where: { $0.code == Locale.current.regionCode })
+//                ?? countries.first!
         }
         set {
             _selectedCountry = newValue
@@ -74,7 +74,8 @@ public class CountryPickerView: NibView {
         countryDetailsLabel.font = font
         countryDetailsLabel.textColor = textColor
         if showPhoneCodeInView && showCountryCodeInView {
-            countryDetailsLabel.text = "(\(selectedCountry.code)) \(selectedCountry.phoneCode)"
+//            countryDetailsLabel.text = "(\(selectedCountry.code)) \(selectedCountry.phoneCode)"
+          countryDetailsLabel.text = "\(selectedCountry.phoneCode)"
             return
         }
         

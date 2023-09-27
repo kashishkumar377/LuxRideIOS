@@ -12,8 +12,10 @@ class ChangeEmailViewController: UIViewController {
     @IBOutlet var viewMain: UIView!
     @IBOutlet var viewEmail: UIView!
     @IBOutlet var btnSubmit: UIButton!
-    
-    override func viewDidLoad() {
+    @IBOutlet weak var txtfldEmail: UITextField!
+
+  
+  override func viewDidLoad() {
         super.viewDidLoad()
         viewMain.layer.cornerRadius = 10
         viewEmail.layer.cornerRadius = 10

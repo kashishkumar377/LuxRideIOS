@@ -47,6 +47,9 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
             let targetVC = sb.instantiateViewController(withIdentifier: "ChangeEmailViewController") as! ChangeEmailViewController
+          targetVC.modalPresentationStyle = .overCurrentContext
+             //add clear color background
+          targetVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
             self.present(targetVC, animated: true, completion: nil)
         }
     }

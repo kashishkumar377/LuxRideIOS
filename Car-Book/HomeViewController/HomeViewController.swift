@@ -11,17 +11,22 @@ protocol dismissFromSearch {
   func pass(data: String)
 }
 
-class HomeViewController: UIViewController,dismissFromSearch {
+class HomeViewController: BaseClassVC,dismissFromSearch {
    
     @IBOutlet var tblCars: UITableView!
     @IBOutlet var viewLocation: UIView!
     @IBOutlet var imgLocation: UIImageView!
-    
-    override func viewDidLoad() {
+
+     var carTypeArr = [CarTypeData]()
+     var carNameArr = [CarTypeData]()
+     override func viewDidLoad() {
         super.viewDidLoad()
-        //imgLocation.layer.cornerRadius = 10
+    
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         registerNib()
-    }
+        self.getCarType()
+        self.getCarName()
+     }
     
     func registerNib() {
         tblCars.register(UINib(nibName: "regulationsTableViewCell", bundle: nil), forCellReuseIdentifier: "regulationCell")
@@ -51,4 +56,28 @@ class HomeViewController: UIViewController,dismissFromSearch {
         let targetVC = sb.instantiateViewController(withIdentifier: "searchListViewController")
         self.navigationController?.pushViewController(targetVC, animated: true)
     }
+}
+
+//MARK: -  -----API CALLS-----
+extension HomeViewController {
+
+  func getCarType(){
+      reqUser.getCarTypeAPi { user, res, errCode in
+
+        DispatchQueue.main.async {
+          self.carTypeArr = user ?? [CarTypeData]()
+          self.tblCars.reloadData()
+        }
+     }
+  }
+
+  func getCarName(){
+      reqUser.getCarCompaniesApi { user, res, errCode in
+
+        DispatchQueue.main.async {
+          self.carNameArr = user ?? [CarTypeData]()
+          self.tblCars.reloadData()
+        }
+     }
+  }
 }

@@ -9,10 +9,11 @@ import UIKit
 
 class GetStartedViewController: UIViewController {
 
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
-  }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -20,8 +21,10 @@ class GetStartedViewController: UIViewController {
 
     @IBAction func onBtnGetStartedClicked(_ sender: UIButton) {
         let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
+        UserStoreSingleton.shared.isLoggedIn = false
         let targetVC = sb.instantiateViewController(withIdentifier: "TabBarViewController")
         self.navigationController?.pushViewController(targetVC, animated: true)
     }
+  
 }
 

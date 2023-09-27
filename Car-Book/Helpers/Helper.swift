@@ -10,6 +10,7 @@ import UIKit
 typealias TBLDelegate = UITableViewDelegate & UITableViewDataSource
 typealias PickerDelegate = UIPickerViewDelegate & UIPickerViewDataSource
 typealias ImgPickerDelegate = UIImagePickerControllerDelegate & UINavigationControllerDelegate
+var __maxLengths = [UITextField: Int]()
 extension UIStoryboard {
     
     func instantiateViewController<T: UIViewController>() -> T {
@@ -26,6 +27,60 @@ extension NSObject {
     static var className: String {
         return String(describing: self)
     }
+}
+
+struct  Helper {
+  static var shared = Helper()
+  class DisplayBanner {
+      class func show(message:String?){
+          let banner = Banner(title: message ?? ErrorMessages.somethingWentWrong, subtitle: "", image: nil, backgroundColor: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0))
+          banner.dismissesOnTap = true
+          banner.show(duration: 1.0)
+      }
+  }
+
+  func isValidEmail(candidate: String) -> Bool {
+
+      let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+      var valid = NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
+      if valid {
+          valid = !candidate.contains("..")
+      }
+      return !valid
+  }
+
+  // Mark: - Field empty or not
+  /*************************************************************/
+
+  func isFieldEmpty(field: String) -> Bool {
+      let trimmed = field.trimmingCharacters(in: .whitespacesAndNewlines)
+      return trimmed.count == 0
+  }
+
+  func isPhoneNumberValid(field: String) -> Bool {
+      let phoneRegex = "^[0-9]{6,15}$";
+      let valid = NSPredicate(format: "SELF MATCHES %@", phoneRegex).evaluate(with: field)
+      return !valid
+  }
+
+  func isValidPassword(field: String) -> Bool {
+      let passwordreg =  ("^(?=.*[0-9])(?=.*[A-Za-z]).{8,20}$")
+      let isMatched = NSPredicate(format:"SELF MATCHES %@", passwordreg).evaluate(with: field)
+      if isMatched {
+          return true
+      }
+      return false
+  }
+
+  func isValidEmailAddress(candidate: String) -> Bool {
+
+      let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+      var valid = NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
+      if valid {
+          valid = !candidate.contains("..")
+      }
+      return !valid
+  }
 }
 public extension UITableView {
   func register<C>(_ cellType: C.Type) where C: UITableViewCell {
@@ -71,6 +126,23 @@ extension UIViewController {
     func showAlertMsg(_ msg:String){
         let alert = UIAlertController(title: "LuxRide", message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "ok", style: .default))
+        self.present(alert, animated: true)
+    }
+  func popupAlert(title: String?, message: String?, actionTitles:[String?], actions:[((UIAlertAction) -> Void)?]) {
+      let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+      for (index, title) in actionTitles.enumerated() {
+          let action = UIAlertAction(title: title, style: .default, handler: actions[index])
+          alert.addAction(action)
+      }
+      self.present(alert, animated: true, completion: nil)
+  }
+
+
+    func showAlertMsgAction(_ msg:String,onDismiss:(()->Void)!) {
+        let alert = UIAlertController(title: "LuxRide", message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default,handler: { action in
+            onDismiss()
+        }))
         self.present(alert, animated: true)
     }
 }
@@ -163,38 +235,38 @@ open class DesignableView:UIView {
     }
     
     
-    @IBInspectable
-    var borderWidth: CGFloat {
-        get {
-            return layer.borderWidth
-        }
-        set {
-            layer.borderWidth = newValue
-            layer.masksToBounds = false
-            
-
-        }
-    }
+//    @IBInspectable
+//  override  var borderWidth: CGFloat {
+//        get {
+//            return layer.borderWidth
+//        }
+//        set {
+//            layer.borderWidth = newValue
+//            layer.masksToBounds = false
+//
+//
+//        }
+//    }
+//
+//    @IBInspectable
+//  override  var borderColor: UIColor? {
+//        get {
+//            if let color = layer.borderColor {
+//                return UIColor(cgColor: color)
+//            }
+//            return nil
+//        }
+//        set {
+//            if let color = newValue {
+//                layer.borderColor = color.cgColor
+//            } else {
+//                layer.borderColor = nil
+//            }
+//        }
+//    }
     
     @IBInspectable
-    var borderColor: UIColor? {
-        get {
-            if let color = layer.borderColor {
-                return UIColor(cgColor: color)
-            }
-            return nil
-        }
-        set {
-            if let color = newValue {
-                layer.borderColor = color.cgColor
-            } else {
-                layer.borderColor = nil
-            }
-        }
-    }
-    
-    @IBInspectable
-    var shadowRadius: CGFloat {
+  override var shadowRadius: CGFloat {
         get {
             return layer.shadowRadius
         }
@@ -206,7 +278,7 @@ open class DesignableView:UIView {
     }
     
     @IBInspectable
-    var shadowOpacity: Float {
+  override   var shadowOpacity: Float {
         get {
             return layer.shadowOpacity
         }
@@ -218,7 +290,7 @@ open class DesignableView:UIView {
     }
     
     @IBInspectable
-    var shadowOffset: CGSize {
+  override   var shadowOffset: CGSize {
         get {
             return layer.shadowOffset
         }
@@ -231,7 +303,7 @@ open class DesignableView:UIView {
     }
     
     @IBInspectable
-    var shadowColor: UIColor? {
+  override   var shadowColor: UIColor? {
         get {
             if let color = layer.shadowColor {
                 return UIColor(cgColor: color)
@@ -269,7 +341,7 @@ open class DesignableImageView:UIImageView {
     
     
     @IBInspectable
-    var borderWidth: CGFloat {
+  override  var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -280,22 +352,7 @@ open class DesignableImageView:UIImageView {
         }
     }
     
-    @IBInspectable
-    var borderColor: UIColor? {
-        get {
-            if let color = layer.borderColor {
-                return UIColor(cgColor: color)
-            }
-            return nil
-        }
-        set {
-            if let color = newValue {
-                layer.borderColor = color.cgColor
-            } else {
-                layer.borderColor = nil
-            }
-        }
-    }
+
     
 }
 
@@ -326,7 +383,7 @@ open class DesignableButton:UIButton {
     
     
     @IBInspectable
-    var borderWidth: CGFloat {
+  override  var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -337,25 +394,10 @@ open class DesignableButton:UIButton {
         }
     }
     
-    @IBInspectable
-    var borderColor: UIColor? {
-        get {
-            if let color = layer.borderColor {
-                return UIColor(cgColor: color)
-            }
-            return nil
-        }
-        set {
-            if let color = newValue {
-                layer.borderColor = color.cgColor
-            } else {
-                layer.borderColor = nil
-            }
-        }
-    }
+
     
     @IBInspectable
-    var shadowRadius: CGFloat {
+  override  var shadowRadius: CGFloat {
         get {
             return layer.shadowRadius
         }
@@ -367,7 +409,7 @@ open class DesignableButton:UIButton {
     }
     
     @IBInspectable
-    var shadowOpacity: Float {
+  override   var shadowOpacity: Float {
         get {
             return layer.shadowOpacity
         }
@@ -379,7 +421,7 @@ open class DesignableButton:UIButton {
     }
     
     @IBInspectable
-    var shadowOffset: CGSize {
+  override  var shadowOffset: CGSize {
         get {
             return layer.shadowOffset
         }
@@ -392,7 +434,7 @@ open class DesignableButton:UIButton {
     }
     
     @IBInspectable
-    var shadowColor: UIColor? {
+  override  var shadowColor: UIColor? {
         get {
             if let color = layer.shadowColor {
                 return UIColor(cgColor: color)
@@ -429,7 +471,7 @@ open class DesignableLabel:UILabel {
     
     
     @IBInspectable
-    var borderWidth: CGFloat {
+  override  var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -440,22 +482,7 @@ open class DesignableLabel:UILabel {
         }
     }
     
-    @IBInspectable
-    var borderColor: UIColor? {
-        get {
-            if let color = layer.borderColor {
-                return UIColor(cgColor: color)
-            }
-            return nil
-        }
-        set {
-            if let color = newValue {
-                layer.borderColor = color.cgColor
-            } else {
-                layer.borderColor = nil
-            }
-        }
-    }
+   
     
 }
 
@@ -524,14 +551,14 @@ public class DesignableTextField: UITextField {
     @IBInspectable var leftPadding: CGFloat = 0
     @IBInspectable var rightPadding: CGFloat = 0
     
-    @IBInspectable var borderColor: UIColor = UIColor.lightGray {
-        didSet {
-            self.layer.borderWidth = 1
-            self.borderStyle = .none
-            self.layer.borderColor = borderColor.cgColor
-        }
-    }
-    
+//    @IBInspectable var borderColor: UIColor = UIColor.lightGray {
+//        didSet {
+//            self.layer.borderWidth = 1
+//            self.borderStyle = .none
+//            self.layer.borderColor = borderColor.cgColor
+//        }
+//    }
+//
     @IBInspectable var borderCornerRadius: CGFloat = 4 {
         didSet {
             self.layer.borderWidth = 1
@@ -540,12 +567,12 @@ public class DesignableTextField: UITextField {
         }
     }
     
-    @IBInspectable var borderWidth: CGFloat = 1 {
-        didSet {
-            self.layer.borderWidth = 1
-            self.borderStyle = .none
-        }
-    }
+//  @IBInspectable override var borderWidth: CGFloat = 1 {
+//        didSet {
+//            self.layer.borderWidth = 1
+//            self.borderStyle = .none
+//        }
+//    }
     
     @IBInspectable var textPadding: CGFloat = 0 {
         didSet {
@@ -594,6 +621,7 @@ extension String {
         let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }
+ 
 
     func isNumeric() -> Bool {
         
@@ -647,9 +675,42 @@ extension String {
 
 
 extension UITextField {
+
+
     func setLeftPaddingPoints(_ amount:CGFloat){
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.leftView = paddingView
         self.leftViewMode = .always
     }
+
+  @IBInspectable var placeHolderColor: UIColor? {
+       get {
+           return self.placeHolderColor
+       }
+       set {
+           self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
+       }
+   }
+
+
+      @IBInspectable var maxLength: Int {
+          get {
+              guard let l = __maxLengths[self] else {
+                  return 150 // (global default-limit. or just, Int.max)
+              }
+              return l
+          }
+          set {
+              __maxLengths[self] = newValue
+              addTarget(self, action: #selector(fix), for: .editingChanged)
+          }
+      }
+      @objc func fix(textField: UITextField) {
+          if let t = textField.text {
+              textField.text = String(t.prefix(maxLength))
+          }
+      }
+  //}
 }
+
+

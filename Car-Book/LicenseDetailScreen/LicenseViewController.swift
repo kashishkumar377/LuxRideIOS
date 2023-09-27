@@ -39,6 +39,9 @@ class LicenseViewController: UIViewController {
         
         viewCountry.layer.borderWidth = 1.0
         viewCountry.layer.borderColor =  Constant.color.borderColor
+
+        viewCity.layer.borderWidth = 1.0
+        viewCity.layer.borderColor =  Constant.color.borderColor
         
         viewLastName.layer.borderWidth = 1.0
         viewLastName.layer.borderColor =  Constant.color.borderColor

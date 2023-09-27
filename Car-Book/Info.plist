@@ -2,6 +2,39 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>use for car location</string>
+  <key>NSCameraUsageDescription</key>
+  <string>use camera for image</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1608289686367060</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.958664200343-dhsg9fs9hhosadpjk37ags6rrdvvctb1</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1608289686367060</string>
+	<key>FacebookClientToken</key>
+	<string>5abdedc880321655f3e58e39b84cac34</string>
+	<key>FacebookDisplayName</key>
+	<string>LuxiRide</string>
+	<key>GIDClientID</key>
+	<string>958664200343-dhsg9fs9hhosadpjk37ags6rrdvvctb1.apps.googleusercontent.com</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Bold.ttf</string>

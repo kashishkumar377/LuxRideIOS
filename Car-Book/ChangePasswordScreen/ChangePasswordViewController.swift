@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChangePasswordViewController: UIViewController {
+class ChangePasswordViewController: BaseClassVC {
     
     @IBOutlet var btnSubmit: UIButton!
     @IBOutlet var viewCurrentPwd: UIView!
@@ -38,7 +38,31 @@ class ChangePasswordViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    @IBAction func onBtnBackClicked(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+  @IBAction func actionSubmit(_ sender: Any) {
+   // self.updateEmail()
+  }
+
+  @IBAction func onBtnBackClicked(_ sender: UIButton) {
+      self.dismiss(animated: true)
+
     }
+//  func updateEmail(){
+//    self.view.showLoadingIndicator()
+//    reqUser.email = txtfldEmail.text ?? ""
+//
+//    reqUser.updateProfile { [self] loginUser, errMsg, errCode in
+//        DispatchQueue.main.async DispatchQueue.main.async {
+//          self.view.hideLoadingIndicator()
+//          if errCode == 200 {
+//              self.showAlertMsgAction(errMsg) {
+//                 let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
+//                  let targetVC = sb.instantiateViewController(withIdentifier: "AccountViewController")
+//                self.dismiss(animated: true)
+//              }
+//          } else {
+//              self.showAlertMsg(errMsg)
+//          }
+//      }
+//    }
+//  }
 }

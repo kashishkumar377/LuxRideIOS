@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeleteAccountView" customModule="Car_Book" customModuleProvider="target">
+            <connections>
+                <outlet property="NoBtn" destination="QTn-HM-QBY" id="dze-Nc-17c"/>
+                <outlet property="YesBtn" destination="PnW-Hf-3V6" id="vZK-GB-pPJ"/>
+                <outlet property="bgVw" destination="YhI-2m-7iN" id="ESr-fn-s2b"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="uHP-gp-uZR"/>
+                <outlet property="descLbl" destination="9Gd-fQ-N8W" id="mOn-fq-ORS"/>
+                <outlet property="titleLbl" destination="MCQ-kF-WpF" id="1x9-c9-qIH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YhI-2m-7iN">
+                    <rect key="frame" x="46" y="308" width="301" height="236"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deactivate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCQ-kF-WpF">
+                            <rect key="frame" x="104" y="25.000000000000004" width="93.333333333333314" height="40.333333333333343"/>
+                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PnW-Hf-3V6" customClass="GradientButton" customModule="Car_Book" customModuleProvider="target">
+                            <rect key="frame" x="70" y="141" width="161" height="40"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Iub-lM-rrf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Yes">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="YesTapped:" destination="-1" eventType="touchUpInside" id="Mjg-IV-nDJ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTn-HM-QBY">
+                            <rect key="frame" x="113" y="186" width="75" height="35"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="gCk-SY-xuq"/>
+                                <constraint firstAttribute="width" constant="75" id="iqt-zZ-RgH"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="No">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelTapped:" destination="-1" eventType="touchUpInside" id="nK7-ez-6dn"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Are you sure that you want to Deactivate Account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Gd-fQ-N8W">
+                            <rect key="frame" x="10" y="80.333333333333314" width="281" height="15.666666666666671"/>
+                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="11"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" name="dullWhite"/>
+                    <constraints>
+                        <constraint firstItem="QTn-HM-QBY" firstAttribute="centerX" secondItem="MCQ-kF-WpF" secondAttribute="centerX" id="Aqd-Md-WQb"/>
+                        <constraint firstItem="PnW-Hf-3V6" firstAttribute="top" secondItem="9Gd-fQ-N8W" secondAttribute="bottom" constant="45" id="Fmt-1h-eH0"/>
+                        <constraint firstItem="MCQ-kF-WpF" firstAttribute="top" secondItem="YhI-2m-7iN" secondAttribute="top" constant="25" id="TXM-Sm-y5z"/>
+                        <constraint firstAttribute="trailing" secondItem="9Gd-fQ-N8W" secondAttribute="trailing" constant="10" id="Ul2-hg-PVr"/>
+                        <constraint firstItem="QTn-HM-QBY" firstAttribute="top" secondItem="PnW-Hf-3V6" secondAttribute="bottom" constant="5" id="YL4-sn-qvY"/>
+                        <constraint firstItem="9Gd-fQ-N8W" firstAttribute="leading" secondItem="YhI-2m-7iN" secondAttribute="leading" constant="10" id="YNL-4D-DRE"/>
+                        <constraint firstAttribute="bottom" secondItem="QTn-HM-QBY" secondAttribute="bottom" constant="15" id="cVH-R4-rzj"/>
+                        <constraint firstItem="PnW-Hf-3V6" firstAttribute="leading" secondItem="YhI-2m-7iN" secondAttribute="leading" constant="70" id="hcQ-zf-tc9"/>
+                        <constraint firstItem="9Gd-fQ-N8W" firstAttribute="top" secondItem="MCQ-kF-WpF" secondAttribute="bottom" constant="15" id="mMr-iK-KaG"/>
+                        <constraint firstAttribute="trailing" secondItem="PnW-Hf-3V6" secondAttribute="trailing" constant="70" id="oVA-aF-2I0"/>
+                        <constraint firstItem="MCQ-kF-WpF" firstAttribute="centerX" secondItem="YhI-2m-7iN" secondAttribute="centerX" id="rch-xL-tu2"/>
+                        <constraint firstAttribute="width" secondItem="YhI-2m-7iN" secondAttribute="height" multiplier="293:230" id="vj6-1w-VXl"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.11" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="YhI-2m-7iN" firstAttribute="width" secondItem="YhI-2m-7iN" secondAttribute="height" multiplier="293:230" id="4QV-43-Co6"/>
+                <constraint firstItem="YhI-2m-7iN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="nYn-9H-RUR"/>
+                <constraint firstItem="YhI-2m-7iN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xOa-x6-Rtf"/>
+            </constraints>
+            <point key="canvasLocation" x="28" y="21"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="dullWhite">
+            <color red="0.91764705882352937" green="0.91764705882352937" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
