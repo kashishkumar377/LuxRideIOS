@@ -25,7 +25,7 @@ extension searchListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let favCarCell = tableView.dequeueReusableCell(withIdentifier: "favCarCell") as! FavCarTableViewCell
         if (indexPath.row % 2 != 0){
-            favCarCell.imgCar.image = UIImage(named: "img_hector")
+           // favCarCell.imgCar.image = UIImage(named: "img_hector")
         }
         return favCarCell
     }

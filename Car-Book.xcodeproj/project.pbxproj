@@ -107,6 +107,7 @@
 		CE45B5822ABC154900E4E7AB /* GetVehicleTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45B5812ABC154900E4E7AB /* GetVehicleTypes.swift */; };
 		CE64FC852AC1840D004FF7FE /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64FC842AC1840D004FF7FE /* ImagePickerManager.swift */; };
 		CE6F30EC2AB050040025EC95 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6F30EB2AB050040025EC95 /* Singleton.swift */; };
+		CE7E7B352AC589CE005E4D63 /* DateSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E7B342AC589CD005E4D63 /* DateSelectionVC.swift */; };
 		CE82C8382ABCCB76000AD22B /* BrandColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE82C8372ABCCB75000AD22B /* BrandColorViewController.swift */; };
 		CE91055B2AB09AFE00C07400 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91055A2AB09AFE00C07400 /* EditProfileVC.swift */; };
 		CE91055D2AB09B3B00C07400 /* ViewProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91055C2AB09B3B00C07400 /* ViewProfileVC.swift */; };
@@ -283,6 +284,7 @@
 		CE45B5812ABC154900E4E7AB /* GetVehicleTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVehicleTypes.swift; sourceTree = "<group>"; };
 		CE64FC842AC1840D004FF7FE /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		CE6F30EB2AB050040025EC95 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		CE7E7B342AC589CD005E4D63 /* DateSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionVC.swift; sourceTree = "<group>"; };
 		CE82C8372ABCCB75000AD22B /* BrandColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandColorViewController.swift; sourceTree = "<group>"; };
 		CE91055A2AB09AFE00C07400 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		CE91055C2AB09B3B00C07400 /* ViewProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfileVC.swift; sourceTree = "<group>"; };
@@ -292,7 +294,6 @@
 		CE9105642AB1C40C00C07400 /* AppString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppString.swift; sourceTree = "<group>"; };
 		CE9974CC2ABDD5B40065DD65 /* TermsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsVC.swift; sourceTree = "<group>"; };
 		CEAD0F392ABC7676009F288C /* CarNameCompaniesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarNameCompaniesVC.swift; sourceTree = "<group>"; };
-		CEBB9CE12AC43BA4003E3834 /* FacebookCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FacebookCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECCF0C72AB3127B00FB786F /* DeleteAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeleteAccountView.xib; sourceTree = "<group>"; };
 		CECCF0C82AB3127F00FB786F /* LogOutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogOutView.xib; sourceTree = "<group>"; };
 		CECCF0C92AB3128200FB786F /* LogOutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogOutView.swift; sourceTree = "<group>"; };
@@ -559,6 +560,7 @@
 				258603FC2A8F9BA7006D548F /* LatestCarTableViewCell.swift */,
 				2542470B2A96455B00A6B98F /* regulationsTableViewCell.swift */,
 				2542470C2A96455B00A6B98F /* regulationsTableViewCell.xib */,
+				CE7E7B342AC589CD005E4D63 /* DateSelectionVC.swift */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -672,7 +674,6 @@
 		75F6FD0A633F624AF50B51D1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CEBB9CE12AC43BA4003E3834 /* FacebookCore.framework */,
 				D051A0E42CA4F6DA9D9FD435 /* Pods_Car_Book.framework */,
 				FFE0687CEE95E1790DB9487A /* Pods_Car_Book_Car_BookUITests.framework */,
 				5BF7F31CCD6C6F8DF66ABB52 /* Pods_Car_BookTests.framework */,
@@ -1322,6 +1323,7 @@
 				258603F92A8F96C8006D548F /* carModelCollectionViewCell.swift in Sources */,
 				CE39B75F2AC3F9F20038578D /* CountryList.swift in Sources */,
 				CEDA47A62A8A2C850031E598 /* AppDelegate.swift in Sources */,
+				CE7E7B352AC589CE005E4D63 /* DateSelectionVC.swift in Sources */,
 				258603E92A8F473F006D548F /* FavoriteCarViewController.swift in Sources */,
 				2586044A2A924237006D548F /* ReportListingViewController.swift in Sources */,
 				CE272B112ABB29590008A79F /* AddCarVC.swift in Sources */,
@@ -1539,6 +1541,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Car-Book/Car-Book.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BFE8JW2U36;
@@ -1571,6 +1574,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxride.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1584,6 +1588,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Car-Book/Car-Book.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BFE8JW2U36;
@@ -1616,6 +1621,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxride.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

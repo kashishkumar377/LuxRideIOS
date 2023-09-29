@@ -7,12 +7,15 @@ target 'Car-Book' do
 
   # Pods for Car-Book
  # Pods for Car-Book
-
-#  pod 'GooglePlaces', '4.2.0'
+ 
+  pod 'FSCalendar'
+  pod 'GooglePlaces'
+  pod 'SKCountryPicker'
   pod 'IQKeyboardManagerSwift'
   pod 'Alamofire'
   pod 'lottie-ios'
   pod 'ObjectMapper'
+  pod 'GooglePlaces' #'= 3.0.3'
   pod 'Kingfisher' #'~> 7.6'
   pod 'GoogleMaps'
   pod 'KeychainSwift'
@@ -22,6 +25,8 @@ target 'Car-Book' do
   pod 'CountryPickerIOS'
   pod 'GoogleSignIn'
   pod 'FacebookLogin', '~> 0.9'
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
   pod 'GoogleMaps'
   target 'Car-BookTests' do
     inherit! :search_paths

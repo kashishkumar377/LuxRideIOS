@@ -48,15 +48,25 @@ class CarAddressVC: BaseClassVC, CLLocationManagerDelegate,UINavigationControlle
       locationManager.requestAlwaysAuthorization()
     }
     placesClient = GMSPlacesClient.shared()
+
   }
 
   override func viewWillAppear(_ animated: Bool) {
     self.tabBarController?.tabBar.isHidden = true
   }
+
   //MARK: ------ Location Change
   @IBAction func actionLocation(_ sender: Any) {
     let acController = GMSAutocompleteViewController()
     acController.delegate = self
+    let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
+                                              UInt(GMSPlaceField.placeID.rawValue))!
+    acController.placeFields = fields
+
+    // Specify a filter.
+    let filter = GMSAutocompleteFilter()
+
+    //    acController.autocompleteFilter = filter
     self.present(acController, animated: true, completion: nil)
 
   }
@@ -127,7 +137,7 @@ class CarAddressVC: BaseClassVC, CLLocationManagerDelegate,UINavigationControlle
 
 }
 
-//MARK: ---GMSAutocompleteViewControllerDelegate,GMSMapViewDelegate
+//MARK: - -GMSAutocompleteViewControllerDelegate,GMSMapViewDelegate
 extension CarAddressVC :  GMSAutocompleteViewControllerDelegate,GMSMapViewDelegate  {
   func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
     // TODO: handle the error.
@@ -141,20 +151,20 @@ extension CarAddressVC :  GMSAutocompleteViewControllerDelegate,GMSMapViewDelega
   }
 
   func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-    let lat = place.coordinate.latitude
-    let long = place.coordinate.longitude
-    print("Place address: \(place.formattedAddress ?? "null")")
-    print("Place lat: \(lat)")
-    print("Place long: \(long)")
-    //self.txt_Country.text = place.formattedAddress
-    let locations = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-    print(locations)
-    getAddressFromCoordinates(location: locations)
-    getAddressFromLatLon(pdblLatitude: lat, withLongitude: long)
-    print("Place attributions: \(String(describing: place.attributions))")
-    txtAddress.text = place.formattedAddress
-    self.dismiss(animated: true, completion: nil)
-  }
+
+          let lat = place.coordinate.latitude
+          let lon = place.coordinate.longitude
+          print("Place name: \(String(describing: place.name))")
+          print("place.coordinate: \(String(describing: place.coordinate))")
+          print("Place attributions: \(String(describing: place.attributions))")
+          print("\(lat)\(lon)")
+          txtAddress.text = "\(String(describing: place.name ?? ""))"
+          getAddressFromCoordinates(location: place.coordinate)
+          dismiss(animated: true, completion: nil)
+       //   UserLocation.coordinates = place.coordinate
+        //  UserLocation.address = place.formattedAddress ?? ""
+      }
+
 
   func getAddressFromCoordinates(location: CLLocationCoordinate2D){
     geocode.reverseGeocodeCoordinate(location){

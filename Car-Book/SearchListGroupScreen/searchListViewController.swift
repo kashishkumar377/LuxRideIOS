@@ -19,6 +19,11 @@ class searchListViewController: BaseClassVC {
         viewSearch.layer.cornerRadius = 10
         viewMap.layer.cornerRadius = 10
         viewDate.layer.cornerRadius = 10
+          let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
+          let targetVC = sb.instantiateViewController(withIdentifier: "FilterScreenPopUpViewController") as! FilterScreenPopUpViewController
+            targetVC.modalPresentationStyle = .overCurrentContext
+            targetVC.modalTransitionStyle = .crossDissolve
+            self.present(targetVC, animated: true, completion: nil)
     }
     
     @IBAction func onBtnFilterClicked() {

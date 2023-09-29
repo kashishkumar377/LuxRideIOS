@@ -28,12 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
 //    FirebaseApp.configure()
     IQKeyboardManager.shared.enable = true
     IQKeyboardManager.shared.enableAutoToolbar = true
-    GMSServices.provideAPIKey("AIzaSyBDAMVPXC3zjJH7ecNfNrneP0x8Av82SrY")
+    GMSServices.provideAPIKey("AIzaSyDGjR7kqAFRiZ6hVluT9LhshR7_wvqOEug")
    // GMSPlacesClient.provideAPIKey("AIzaSyBq16ekrXE3LHeDIwu3KDk0O9s-rMjZpqc")
-    
-    GMSPlacesClient.provideAPIKey("AIzaSyDGjR7kqAFRiZ6hVluT9LhshR7_wvqOEu")
-    GMSServices.provideAPIKey("AIzaSyDGjR7kqAFRiZ6hVluT9LhshR7_wvqOEu")
-    
+    GMSPlacesClient.provideAPIKey("AIzaSyDGjR7kqAFRiZ6hVluT9LhshR7_wvqOEug")
+    GMSServices.provideAPIKey("AIzaSyDGjR7kqAFRiZ6hVluT9LhshR7_wvqOEug")
+
 
     configureTabbar()
     return true

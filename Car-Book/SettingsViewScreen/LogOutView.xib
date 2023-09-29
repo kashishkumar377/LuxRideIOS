@@ -106,6 +106,9 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="25"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" red="0.75294117650000003" green="0.75294117650000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
@@ -118,6 +121,11 @@
             <point key="canvasLocation" x="90.839694656488547" y="34.507042253521128"/>
         </view>
     </objects>
+    <designables>
+        <designable name="mVi-UO-R6Z">
+            <size key="intrinsicContentSize" width="49" height="32"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="dullWhite">
             <color red="0.91764705882352937" green="0.91764705882352937" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

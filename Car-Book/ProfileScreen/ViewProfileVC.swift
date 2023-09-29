@@ -92,5 +92,3 @@ extension ViewProfileVC {
       }
   }
 }
-
-//pod 'GooglePlaces', '8.2.1'

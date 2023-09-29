@@ -29,12 +29,12 @@ class User : Mappable {
     var signUpType : String?
     var socaialId : String?
     var title : String?
-  var profileImg : String?
+    var profileImg : String?
     var description : String?
     var language: String?
     var ninNumber : String?
-  var isEmailVerified: Int?
-  var isPhoneVerified : Int?
+    var isEmailVerified: Int?
+    var isPhoneVerified : Int?
     required init?(map: Map) {
         
     }
@@ -183,7 +183,21 @@ class User : Mappable {
       }
   }
 
-  
+  func getCar(callBack:((_ loginUser:[GetSubCatData]?,_ errMsg:String,_ errCode:Int)->Void)!) {
+      NetworkManager.sendRequest(urlPath: APiConstants.CarSubCat, type: .get, parms: [:]) { responseObject, suces in
+          if (responseObject["success"] as? Int ?? 0) == 1{
+                  let response = (responseObject["data"] as? [[String:Any]] ?? [[:]])
+                  let user = Mapper<GetSubCatData>().mapArray(JSONArray: response)
+                  callBack(user,responseObject["message"] as? String ?? "",Constant.APIResponseCodes.statusCodeSuccessfull)
+              } else {
+                  callBack(nil,responseObject["message"] as? String ?? "",Constant.APIResponseCodes.statusCodeInternalServerError)
+              }
+
+      } faliure: { errMsg, errCode in
+          callBack(nil,errMsg,errCode)
+      }
+  }
+
   func getCarCompaniesApi(callBack:((_ loginUser:[CarTypeData]?,_ errMsg:String,_ errCode:Int)->Void)!) {
       NetworkManager.sendRequest(urlPath: APiConstants.CarCompany, type: .get, parms: [:]) { responseObject, suces in
           if (responseObject["success"] as? Int ?? 0) == 1{
@@ -318,9 +332,9 @@ struct UserData : Mappable {
         createdAt <- map["createdAt"]
         updatedAt <- map["updatedAt"]
         __v <- map["__v"]
-      vehicleTypeName <- map["vehicleTypeName"]
-      vehicleTypeImg <- map["vehicleTypeImg"]
-      active <- map["active"]
+        vehicleTypeName <- map["vehicleTypeName"]
+        vehicleTypeImg <- map["vehicleTypeImg"]
+        active <- map["active"]
     }
 
 }
@@ -354,4 +368,75 @@ struct CarTypeData : Mappable {
     __v <- map["__v"]
 
   }
+}
+
+
+struct getSubCat : Mappable {
+  var data : [GetSubCatData]?
+  var success : Bool?
+  var message : String?
+
+  init?(map: Map) {
+
+  }
+
+  mutating func mapping(map: Map) {
+
+    data <- map["data"]
+    success <- map["success"]
+    message <- map["message"]
+  }
+
+}
+
+struct GetSubCatData : Mappable {
+  var _id : String?
+  var categoryId : CategoryId?
+  var subCategoryName : String?
+  var status : Bool?
+  var createdAt : String?
+  var updatedAt : String?
+  var __v : Int?
+
+  init?(map: Map) {
+
+  }
+
+  mutating func mapping(map: Map) {
+
+    _id <- map["_id"]
+    categoryId <- map["categoryId"]
+    subCategoryName <- map["subCategoryName"]
+    status <- map["status"]
+    createdAt <- map["createdAt"]
+    updatedAt <- map["updatedAt"]
+    __v <- map["__v"]
+  }
+
+}
+
+struct CategoryId : Mappable {
+  var _id : String?
+  var companyName : String?
+  var companyImg : String?
+  var active : Bool?
+  var createdAt : String?
+  var updatedAt : String?
+  var __v : Int?
+
+  init?(map: Map) {
+
+  }
+
+  mutating func mapping(map: Map) {
+
+    _id <- map["_id"]
+    companyName <- map["companyName"]
+    companyImg <- map["companyImg"]
+    active <- map["active"]
+    createdAt <- map["createdAt"]
+    updatedAt <- map["updatedAt"]
+    __v <- map["__v"]
+  }
+
 }

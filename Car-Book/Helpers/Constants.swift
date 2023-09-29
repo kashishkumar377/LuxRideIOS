@@ -7,16 +7,6 @@
 
 import Foundation
 import UIKit
-
-
-
-let defaultValues = UserDefaults.standard
-let selectedCountryFlag = "selectedCountryFlag"
-let selectedCountryCode = "selectedCountryCode"
-
-
-
-
 class Constant {
     
     struct Setting {
@@ -31,7 +21,6 @@ class Constant {
     static let settingArr = [Setting(name: "Push Notification") ,Setting(name: "Privacy & Policy"),Setting(name: "Help And Support"),Setting(name: "About Us"),Setting(name: "Terms & Conditions"),Setting(name: "Contact Us"),Setting(name: "Logout")]
 
     static let HomeArr = [Home(name: "Appointment For Home", imgName: "imgAppoit"),Home(name: "Tracking Visa", imgName: "imgVisa"),Home(name: "Calling", imgName: "imgCall"),Home(name: "ILETS Test", imgName: "imgHelp"),Home(name: "NRI Help", imgName: "imgHelp")]
-  
     enum AppStoryBoard : String {
         case Main
         case OwnerStoryboard

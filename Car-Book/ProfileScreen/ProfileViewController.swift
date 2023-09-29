@@ -98,6 +98,7 @@ extension ProfileViewController {
     @IBAction func onBtnNotificationClicked(_ sender: UIButton) {
       let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
       let targetVC = sb.instantiateViewController(withIdentifier: "AccountViewController")
+
       self.navigationController?.pushViewController(targetVC, animated: true)
     }
     
@@ -195,6 +196,7 @@ func getProfile(){
           let imgUrl = "\(APiConstants.imageUrl)\(user?.profileImg ?? "")"
           self.imgVw.sd_setImage(with: URL(string: imgUrl), placeholderImage: UIImage(named: "profile-user"))
           UserStoreSingleton.shared.userType = user?.role
+          UserStoreSingleton.shared.phoneNumer = "\(user?.countryCode ?? "") \(user?.phone ?? "")"
         }else{
           self.btnSwitchAccountHeightConstraint.constant = 0
         }

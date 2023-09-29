@@ -18,12 +18,14 @@ class CarNameCompaniesVC: BaseClassVC {
 
   @IBOutlet weak var carListTbl: UITableView!
   var carTypeArr = [CarTypeData]()
+  var carCategoryArr = [GetSubCatData]()
   var carNameArr = [CarTypeData]()
   var years = [String]()
   var tableType : String?
   var SelectData = [NSMutableDictionary]()
   var selectedAll = [String]()
-  
+
+  var modelId : String?
   let picker = UIColorPickerViewController()
   var indexSelected = NSIndexPath()
   var arrCondition = ["New","Excellent","Very Good","Good","Fair","For Parts"]
@@ -80,9 +82,12 @@ class CarNameCompaniesVC: BaseClassVC {
     }else if tableType == "Color" {
 
     }else if tableType == "Make" {
-      self.getCarName()
+      //self.getCarName()
+      self.getSubCatApi(id:"")
+
     }else if tableType == "Model" {
-      self.getCarType()
+      //self.getCarType()
+      self.getSubCatApi(id:modelId ?? "")
     }else if tableType == "Trim" {
 
     }else{
@@ -90,26 +95,6 @@ class CarNameCompaniesVC: BaseClassVC {
     }
   }
 
-
-  func getCarName(){
-      reqUser.getCarCompaniesApi { user, res, errCode in
-
-        DispatchQueue.main.async {
-          self.carTypeArr = user ?? [CarTypeData]()
-          self.carListTbl.reloadData()
-        }
-     }
-  }
-
-  func getCarType(){
-      reqUser.getCarTypeAPi { user, res, errCode in
-
-        DispatchQueue.main.async {
-          self.carNameArr = user ?? [CarTypeData]()
-          self.carListTbl.reloadData()
-        }
-     }
-  }
 
   //MARK: --- YEAR VALUE
   func yearPicker(){
@@ -143,7 +128,7 @@ class CarNameCompaniesVC: BaseClassVC {
 }
 
 extension CarNameCompaniesVC : UITableViewDelegate,UITableViewDataSource {
-  
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if tableType == "Year" {
       return years.count
@@ -156,9 +141,11 @@ extension CarNameCompaniesVC : UITableViewDelegate,UITableViewDataSource {
     }else if tableType == "Trim"{
       return arrTrim.count
     }else if tableType == "Model"{
-      return carNameArr.count
+      //return carNameArr.count
+      return carCategoryArr.count
     }else if tableType == "Make"{
-      return carTypeArr.count
+      //return carTypeArr.count
+      return carCategoryArr.count
     }else if tableType == "Fuel"{
       return arrFuelType.count
     }else if tableType == "Door"{
@@ -193,11 +180,11 @@ extension CarNameCompaniesVC : UITableViewDelegate,UITableViewDataSource {
       return CarCell
     }else if tableType == "Model"{
       let CarCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! carListCell
-      CarCell.lblName.text = carNameArr[indexPath.row].vehicleTypeName
+      CarCell.lblName.text = carCategoryArr[indexPath.row].subCategoryName//carNameArr[indexPath.row].vehicleTypeName
       return CarCell
     }else if tableType == "Make"{
       let CarCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! carListCell
-      CarCell.lblName.text = carTypeArr[indexPath.row].companyName
+      CarCell.lblName.text = carCategoryArr[indexPath.row].categoryId?.companyName//carTypeArr[indexPath.row].companyName
       return CarCell
     }else if tableType == "Trim"{
       let CarCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! carListCell
@@ -233,7 +220,7 @@ extension CarNameCompaniesVC : UITableViewDelegate,UITableViewDataSource {
       let CarCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! carListCell
       CarCell.lblName.text = carTypeArr[indexPath.row].companyName
       CarCell.btnSelect.addTarget(self, action: #selector(selectButton), for: .touchUpInside)
-      
+
       return CarCell
     }
 
@@ -260,16 +247,19 @@ extension CarNameCompaniesVC : UITableViewDelegate,UITableViewDataSource {
       delegateRef?.getSelectedValue(value: Value, type: "Category")
       dismiss(animated: true, completion: nil)
     }else if tableType == "Make"{
-      let Value = self.carTypeArr[indexPath.row].companyName ?? ""
-      delegateRef?.getSelectedValue(value: Value, type: "Make")
+      let Value = carCategoryArr[indexPath.row].categoryId?.companyName//self.carTypeArr[indexPath.row].companyName ?? ""
+      let Valueid = self.carCategoryArr[indexPath.row]._id ?? ""
+      self.modelId = Valueid
+      delegateRef?.getSelectedValue(value: Value ?? "", type: "Make")
+      self.getSubCatApi(id: Valueid)
       dismiss(animated: true, completion: nil)
     }else if tableType == "Fuel"{
       let Value = self.arrFuelType[indexPath.row]
       delegateRef?.getSelectedValue(value: Value, type: "Fuel")
       dismiss(animated: true, completion: nil)
     }else if tableType == "Model"{
-      let Value = self.carTypeArr[indexPath.row].companyName ?? ""
-      delegateRef?.getSelectedValue(value: Value, type: "Model")
+      let Value = carCategoryArr[indexPath.row].subCategoryName ?? ""//self.carNameArr[indexPath.row].vehicleTypeName ?? ""
+      delegateRef?.getSelectedValue(value: Value , type: "Model")
       dismiss(animated: true, completion: nil)
     }else if tableType == "Trim"{
       let Value = self.arrTrim[indexPath.row]
@@ -314,7 +304,41 @@ extension CarNameCompaniesVC : UITableViewDelegate,UITableViewDataSource {
   }
 
 class carListCell : UITableViewCell {
-  
+
   @IBOutlet weak var btnSelect: UIButton!
   @IBOutlet weak var lblName: UILabel!
+}
+
+extension CarNameCompaniesVC {
+
+  func getSubCatApi(id:String){
+    reqUser.getCar { user, res, errCode in
+      DispatchQueue.main.async {
+       /// self.carCategoryArr = user ?? [GetSubCatData]()
+        self.carCategoryArr = user ?? [GetSubCatData]()
+        self.carListTbl.reloadData()
+      }
+   }
+  }
+
+  func getCarName(){
+      reqUser.getCarCompaniesApi { user, res, errCode in
+        DispatchQueue.main.async {
+          self.carTypeArr = user ?? [CarTypeData]()
+          self.carListTbl.reloadData()
+        }
+     }
+  }
+
+
+  func getCarType(){
+      reqUser.getCarTypeAPi { user, res, errCode in
+
+        DispatchQueue.main.async {
+          self.carNameArr = user ?? [CarTypeData]()
+          self.carListTbl.reloadData()
+        }
+     }
+  }
+
 }

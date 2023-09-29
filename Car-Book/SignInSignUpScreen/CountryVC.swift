@@ -20,6 +20,8 @@ class CountryVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UISe
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+      tblView.delegate = self
+      tblView.dataSource = self
         obj.prepareCountryList()
     }
 

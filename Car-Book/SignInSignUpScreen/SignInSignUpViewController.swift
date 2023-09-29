@@ -14,8 +14,13 @@ import FacebookCore
 import FacebookLogin
 import AuthenticationServices
 import GoogleSignIn
-
+import SKCountryPicker
 import KeychainSwift
+
+
+let selectedCountryFlag = "selectedCountryFlag"
+let selectedCountryCode = "selectedCountryCode"
+
 
 class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding  {
 
@@ -41,9 +46,9 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
     @IBOutlet var viewMobile: UIView!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet var btnCountryCode: UIButton!
-
+    @IBOutlet weak var FlagImg: UIImageView!
    // MARK: - Properties
-    var countryPickerView: CountryPickerView?
+ //   var countryPickerView: CountryPickerView?
     var code = "+234"
 
     // MARK: - properties
@@ -55,6 +60,8 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+      FlagImg.image = UIImage(named: "NG")
+     // FlagImg.backgroundColor = UIColor.red
       if UserStoreSingleton.shared.isLoggedIn == false {
         self.btnBack.isHidden = false
       }else{
@@ -63,7 +70,7 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
       self.tabBarController?.tabBar.isHidden = true
       navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         setupUI()
-       // setCountryTxtField()
+     // setCountryTxtField()
     }
     
     // MARK: - ViewWillAPPear
@@ -73,22 +80,16 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
     }
     
     // MARK: - Methods
-  func setCountryTxtField() {
-    countryPickerView = CountryPickerView(frame: CGRect(x: 0, y: 0, width: 100, height: txtFieldMobileNo.bounds.height))
-    countryPickerView?.delegate = self
-    countryPickerView?.setCountryByPhoneCode("+234")
-    txtFieldMobileNo.leftView = countryPickerView
-    txtFieldMobileNo.leftViewMode = .always
-  }
+//  func setCountryTxtField() {
+//    countryPickerView = CountryPickerView(frame: CGRect(x: 0, y: 0, width: 100, height: txtFieldMobileNo.bounds.height))
+//    countryPickerView?.delegate = self
+//    countryPickerView?.setCountryByPhoneCode("+234")
+//    txtFieldMobileNo.leftView = countryPickerView
+//    txtFieldMobileNo.leftViewMode = .always
+//  }
     
     func setupUI() {
       txtFieldMobileNo.delegate = self
-//      if Global.objGlobalMethod.getSetCountryCode() {
-//         // setSelectedCountry()
-//      }
-//      else {
-//         // self.showAlert(Alert.alertTitle, Alert.countryCodeNotFound, Alert.buttonOK)
-//      }
 
         txtFieldFirstName.layer.cornerRadius = 10
         txtFieldLastName.layer.cornerRadius = 10
@@ -109,7 +110,6 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
         txtFieldEmailSignIn.setLeftPaddingPoints(10)
         txtFieldEmailSignUp.setLeftPaddingPoints(10)
         txtFieldPasswordSignIn.setLeftPaddingPoints(10)
-        
         txtFieldFirstName.layer.borderWidth = 1.0
         txtFieldFirstName.layer.borderColor = Constant.color.borderColor
         txtFieldLastName.layer.borderWidth = 1.0
@@ -132,14 +132,7 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
     }
     
     func signUpAPI() {
-      if Helper.shared.isFieldEmpty(field: txtFieldFirstName.text ?? "") {
-          DisplayBanner.show(message: ErrorMessages.alertEnterFirstName)
-          return
-      }
-      if Helper.shared.isFieldEmpty(field: txtFieldLastName.text ?? "") {
-          DisplayBanner.show(message: ErrorMessages.alertEnterLastName)
-          return
-      }
+
       if Helper.shared.isFieldEmpty(field: txtFieldEmailSignUp.text ?? "") {
           DisplayBanner.show(message: ErrorMessages.alertEnterEmail)
           return
@@ -152,12 +145,19 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
           DisplayBanner.show(message: ErrorMessages.alertEnterPassword)
           return
       }
-
+//      if !Helper.shared.isValidPassword(field: txtFieldPassword.text ?? "") {
+//          DisplayBanner.show(message: ErrorMessages.alertEnterValidPassword)
+//          return
+//      }
       if Helper.shared.isFieldEmpty(field: txtFieldMobileNo.text ?? "") {
           DisplayBanner.show(message: ErrorMessages.alertEnterMobile)
           return
       }
-
+//      if !Helper.shared.isPhoneNumberValid(field: txtFieldMobileNo.text ?? "") {
+//          DisplayBanner.show(message: ErrorMessages.alertEnterMobile)
+//          return
+//      }
+      
         self.view.showLoadingIndicator()
         reqUser.firstName = txtFieldFirstName.text ?? ""
         reqUser.lastName = txtFieldLastName.text ?? ""
@@ -166,16 +166,17 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
         reqUser.deviceType = Constant.UserDeviceConstant.DeviceType
         reqUser.fcmToken = Constant.UserDeviceConstant.DeviceToken
         reqUser.password = txtFieldPassword.text ?? ""
-        reqUser.countryCode = code
+        reqUser.countryCode = "+234"//selectedCountryCode//code
         reqUser.signUpType = "email"
         reqUser.role = "user"
         reqUser.signUp { [self] loginUser, errMsg, errCode in
             DispatchQueue.main.async {
                 self.view.hideLoadingIndicator()
                 if errCode == 200 {
-                  UserDefaults.standard.set(self.txtFieldFirstName.text ?? "", forKey: "username")
+                  UserDefaults.standard.set(self.txtFieldFirstName.text ?? "", forKey: "phone")
                   UserDefaults.standard.set(self.txtFieldEmailSignUp.text ?? "", forKey: "email")
                     self.showAlertMsgAction(errMsg) {
+
                       let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
                       UserStoreSingleton.shared.isLoggedIn = true
                       UserStoreSingleton.shared.userType = "user"
@@ -216,6 +217,8 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
                 if errCode == 200 {
                     self.showAlertMsgAction(errMsg) {
                       UserStoreSingleton.shared.userType = loginUser?.data?.role
+                      UserStoreSingleton.shared.phoneNumer = "\(loginUser?.data?.countryCode ?? "") \(loginUser?.data?.phone ?? "")"
+                      UserDefaults.standard.set(loginUser?.data?.phone, forKey: "phone")
                       if loginUser?.data?.role == "owner" {
                         let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
                         UserStoreSingleton.shared.isLoggedIn = true
@@ -228,8 +231,6 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
                         let targetVC = sb.instantiateViewController(withIdentifier: "TabBarViewController")
                         self.navigationController?.pushViewController(targetVC, animated: true)
                       }
-                     // UserDefaults.standard.set(self.txtFieldEmailSignIn.text, forKey: "email")
-                    //  UserDefaults.standard.set(loginUser?.data?.firstName, forKey: "username")
 
                     }
                 } else {
@@ -239,29 +240,28 @@ class SignInSignUpViewController: BaseClassVC,ASAuthorizationControllerDelegate,
         }
     }
 
-//  func setSelectedCountry() {
-//      let flag = UserDefaults.standard.string(forKey: selectedCountryFlag)
-//      let countryCode = UserDefaults.standard.string(forKey: selectedCountryCode) ?? ""
-//      self.btnCountryCode.setTitle("\(countryCode)", for: .normal)
-//  }
+  func setSelectedCountry() {
+      let flag = UserDefaults.standard.string(forKey: selectedCountryFlag)
+      let countryCode = UserDefaults.standard.string(forKey: selectedCountryCode) ?? ""
+      self.btnCountryCode.setTitle("\(countryCode)", for: .normal)
+     
 
-  func showAlert(_ title: String, _ message:String,_ buttonTitle:String){
-      let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-      let action = UIAlertAction(title: buttonTitle, style: .default) { (action: UIAlertAction) in
+    guard let data = UserDefaults.standard.data(forKey: "selectedCountryFlag") else { return }
+           let decoded = try! PropertyListDecoder().decode(Data.self, from: data)
 
-      }
-      alert.addAction(action)
-      present(alert, animated: true, completion: nil)
+    let imageFromData = UIImage(data: decoded)
+    FlagImg.image = imageFromData!
   }
 }
     
     // MARK: - IBActions
 extension SignInSignUpViewController{
   @IBAction func onBtnFlagClicked(_ sender: UIButton) {
-    let vc = storyboard?.instantiateViewController(withIdentifier: "CountryVC") as! CountryVC
-    vc.objDelegate = self
-    vc.modalPresentationStyle = .overFullScreen
-    self.navigationController?.present(vc, animated: true, completion: nil)
+    let targetVC :  CountryVC = Constant.AppStoryBoard.Main.instance.instantiateViewController()
+ // let vc = storyboard?.instantiateViewController(withIdentifier: "CountryVC") as! CountryVC
+    targetVC.objDelegate = self
+    targetVC.modalPresentationStyle = .overFullScreen
+    self.navigationController?.present(targetVC, animated: true, completion: nil)
   }
 
   @IBAction func onBtnBackClicked(_ sender: UIButton) {
@@ -415,18 +415,18 @@ extension SignInSignUpViewController{
 }
 
 
-extension SignInSignUpViewController : CountryPickerListDelegate {
-    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
-        debugPrint("Selected country \(country)")
-        code  =  country.code
-    }
-    
-    func showCountryList(output: CountryPickerListOutput) {
-        let countryList = CountryPickerList(style: .insetGrouped)
-        countryList.output = output
-        self.navigationController?.present(countryList, animated: true)
-    }
-}
+//extension SignInSignUpViewController : CountryPickerListDelegate {
+//    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
+//        debugPrint("Selected country \(country)")
+//        code  =  country.code
+//    }
+//
+//    func showCountryList(output: CountryPickerListOutput) {
+//        let countryList = CountryPickerList(style: .insetGrouped)
+//        countryList.output = output
+//        self.navigationController?.present(countryList, animated: true)
+//    }
+//}
 
 // MARK: - TextFieldDelegate
 extension SignInSignUpViewController : UITextFieldDelegate {
@@ -445,16 +445,12 @@ extension SignInSignUpViewController : UITextFieldDelegate {
 //MARK: Country Selection Extension
 extension SignInSignUpViewController:  countryProtocol {
     func getCountry(data: CountryModel) {
-       // UserDefaults.standard.set("\(data.callingCode)", forKey: selectedCountryCode)
-       // UserDefaults.standard.set(data.countryFlag, forKey: selectedCountryFlag)
-       // setSelectedCountry()
+        UserDefaults.standard.set("\(data.callingCode)", forKey: selectedCountryCode)
+        UserDefaults.standard.set(data.countryFlag, forKey: selectedCountryFlag)
+      FlagImg.image = UIImage(named: selectedCountryFlag)
+        setSelectedCountry()
     }
-//  func ClearLoginData() {
-//      UserDefaults.standard.set(nil, forKey: user_LoginData)
-//      UserDefaults.standard.set(false, forKey: isLoggedIn)
-//      UserDefaults.standard.set(nil, forKey: selectedCountryCode)
-//      UserDefaults.standard.set(nil, forKey: currentAddress)
-//  }
+
     func archiveCountryModel(countryData : CountryModel) -> Data {
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: countryData, requiringSecureCoding: false)

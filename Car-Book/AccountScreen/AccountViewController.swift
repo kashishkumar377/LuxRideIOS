@@ -19,6 +19,7 @@ class AccountViewController: BaseClassVC {
     override func viewDidLoad() {
         super.viewDidLoad()
        self.tabBarController?.tabBar.isHidden = true
+      LblEmail.text = UserStoreSingleton.shared.phoneNumer
       self.getProfile()
     }
     
@@ -31,7 +32,7 @@ class AccountViewController: BaseClassVC {
     reqUser.getProfileAPi { user, res, errCode in
       DispatchQueue.main.async {
 
-        self.LblEmail.text = user?.email
+       // self.LblEmail.text = user?.email
         self.LblMobile.text = "\(user?.countryCode ?? "") \(user?.phone ?? "")"
 
       }

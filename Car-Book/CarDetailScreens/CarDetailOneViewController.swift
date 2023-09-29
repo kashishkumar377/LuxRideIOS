@@ -13,7 +13,7 @@ import GooglePlaces
 class CarDetailOneViewController: BaseClassVC, SelectionListVCsDelegate {
 
 
-   
+
   @IBOutlet weak var listlPickerview: UIPickerView!
   @IBOutlet var viewTrim: UIView!
     @IBOutlet var viewCar: UIView!
@@ -49,14 +49,11 @@ class CarDetailOneViewController: BaseClassVC, SelectionListVCsDelegate {
 
       updateUI()
     }
-    
+
     func updateUI() {
       self.listlPickerview.isHidden = true
-      listlPickerview
-//      viewPlaces.layer.cornerRadius = 10
-       // viewAddress.layer.cornerRadius = 10
         viewCar.layer.cornerRadius = 10
-      viewTrim.layer.cornerRadius = 10
+        viewTrim.layer.cornerRadius = 10
         viewCarYear.layer.cornerRadius = 10
         viewCarMake.layer.cornerRadius = 10
         viewCarPlateNo.layer.cornerRadius = 10
@@ -65,7 +62,7 @@ class CarDetailOneViewController: BaseClassVC, SelectionListVCsDelegate {
         btnNext.layer.cornerRadius = 10
 
         viewCar.layer.borderWidth = 1.0
-      viewTrim.layer.borderWidth = 1.0
+        viewTrim.layer.borderWidth = 1.0
         viewCar.layer.borderColor =  Constant.color.borderColor
         viewCarYear.layer.borderWidth = 1.0
         viewCarYear.layer.borderColor =  Constant.color.borderColor
@@ -109,7 +106,7 @@ class CarDetailOneViewController: BaseClassVC, SelectionListVCsDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
-  
+
   func getSelectedValue(value:String,type:String) {
     let getVV = value
      print(getVV)
@@ -148,6 +145,8 @@ class CarDetailOneViewController: BaseClassVC, SelectionListVCsDelegate {
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.delegateRef = self
     targetVC?.tableType = "Category"
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
     self.navigationController?.present(targetVC!, animated: true)
 
   }
@@ -157,15 +156,18 @@ class CarDetailOneViewController: BaseClassVC, SelectionListVCsDelegate {
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.delegateRef = self
     targetVC?.tableType = "Make"
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
     self.navigationController?.present(targetVC!, animated: true)
   }
-
 
   @IBAction func actionModel(_ sender: Any) {
     let sb = UIStoryboard(name: Constant.AppStoryBoard.OwnerStoryboard.rawValue, bundle: nil)
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.delegateRef = self
     targetVC?.tableType = "Model"
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
     self.navigationController?.present(targetVC!, animated: true)
   }
 
@@ -174,14 +176,18 @@ class CarDetailOneViewController: BaseClassVC, SelectionListVCsDelegate {
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.delegateRef = self
     targetVC?.tableType = "Trim"
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
     self.navigationController?.present(targetVC!, animated: true)
   }
-  
+
   @IBAction func actionColor(_ sender: Any) {
     let sb = UIStoryboard(name: Constant.AppStoryBoard.OwnerStoryboard.rawValue, bundle: nil)
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.tableType = "Color"
     targetVC?.delegateRef = self
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
     self.navigationController?.present(targetVC!, animated: true)
   }
 
@@ -190,8 +196,9 @@ class CarDetailOneViewController: BaseClassVC, SelectionListVCsDelegate {
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.tableType = "Year"
     targetVC?.delegateRef = self
-    self.listlPickerview.isHidden = false
-   // self.navigationController?.present(targetVC!, animated: true)
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
+    self.navigationController?.present(targetVC!, animated: true)
 
   }
 
@@ -199,7 +206,7 @@ class CarDetailOneViewController: BaseClassVC, SelectionListVCsDelegate {
       self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     @IBAction func onBtnNextClicked(_ sender: UIButton) {
       let sb = UIStoryboard(name: Constant.AppStoryBoard.OwnerStoryboard.rawValue, bundle: nil)
       let targetVC = sb.instantiateViewController(withIdentifier: "CarDetailTwoViewController")

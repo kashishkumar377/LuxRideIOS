@@ -26,4 +26,5 @@ class APiConstants {
     static let CarType = baseUrl + "getVehicleTypes"
     static let CarCompany = baseUrl + "getCompanies"
     static let updateProfile = baseUrl + "updateUser"
+    static let CarSubCat = baseUrl + "getSubCategories?filter="
 }

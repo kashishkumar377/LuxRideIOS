@@ -31,8 +31,4 @@ struct ErrorMessages {
   static let alertConfirmPasswordNotMatch = "Passwords does not match."
   static let alertEnterMobile = "Please new enter Mobile Number."
 
-
-  static let alertEnterFirstName = "Please enter first name."
-  static let alertEnterLastName = "Please enter last name."
-
 }

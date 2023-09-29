@@ -19,6 +19,7 @@ class HomeViewController: BaseClassVC,dismissFromSearch {
 
      var carTypeArr = [CarTypeData]()
      var carNameArr = [CarTypeData]()
+  
      override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -33,10 +34,15 @@ class HomeViewController: BaseClassVC,dismissFromSearch {
     }
     
     @objc func onBtnSearchClicked() {
-    let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
-    let targetVC = sb.instantiateViewController(withIdentifier: "FilterScreenPopUpViewController") as! FilterScreenPopUpViewController
-    targetVC.delegate = self
-    self.present(targetVC, animated: true, completion: nil)
+//    let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
+//    let targetVC = sb.instantiateViewController(withIdentifier: "FilterScreenPopUpViewController") as! FilterScreenPopUpViewController
+//     targetVC.delegate = self
+//      targetVC.modalPresentationStyle = .overCurrentContext
+//      targetVC.modalTransitionStyle = .crossDissolve
+//      self.present(targetVC, animated: true, completion: nil)
+      let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
+      let targetVC = sb.instantiateViewController(withIdentifier: "searchListViewController")
+      self.navigationController?.pushViewController(targetVC, animated: true)
     }
     
     @objc func onBtnFilterClicked() {

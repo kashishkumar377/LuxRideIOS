@@ -41,7 +41,16 @@ class FilterScreenPopUpViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    @IBAction func onBtnBackClicked(_ sender: UIButton) {
+  @IBAction func onCalender(_ sender: Any) {
+  
+    let sb = UIStoryboard(name: Constant.AppStoryBoard.Main.rawValue, bundle: nil)
+    let targetVC = sb.instantiateViewController(withIdentifier: "DateSelectionVC") as! DateSelectionVC
+      targetVC.modalPresentationStyle = .overCurrentContext
+      targetVC.modalTransitionStyle = .crossDissolve
+      self.present(targetVC, animated: true, completion: nil)
+  }
+
+  @IBAction func onBtnBackClicked(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     

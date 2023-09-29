@@ -36,10 +36,36 @@ class TripsViewController: UIViewController {
 
   @IBAction func actionBooked(_ sender: UIButton) {
 //    sender.isSelected = !sender.isSelected
+    if btnTrip.backgroundColor == .black {
+      btnHistory.backgroundColor = .white
+      btnHistory.setTitleColor(UIColor(red: 238/285, green: 238/285, blue: 238/285), for: .normal)
+    } else {
+      btnTrip.backgroundColor = .black
 
+//        backgroundColor = UIColor(red: 238/285, green: 238/285, blue: 238/285)
+//      setTitleColor(UIColor.black, for: .normal)
+    }
+//      if sender.isSelected{
+//        sender.backgroundColor = UIColor.black
+//        sender.setTitleColor(UIColor(red: 238/285, green: 238/285, blue: 238/285), for: .normal)
+//         }
+//      else{
+//        sender.backgroundColor = UIColor(red: 238/285, green: 238/285, blue: 238/285)
+//        sender.setTitleColor(UIColor.black, for: .normal)
+//       }
     }
 
   @IBAction func actionHistory(_ sender: UIButton) {
-   
+    lblnoTrip.font = UIFont(name: "Poppins-Medium", size: 20)
+    lblnoTrip.text = "No History"
+//    sender.isSelected = !sender.isSelected
+      if sender.isSelected{
+        sender.backgroundColor = UIColor.black
+        sender.setTitleColor(UIColor(red: 238/285, green: 238/285, blue: 238/285), for: .normal)
+         }
+      else{
+        sender.backgroundColor = UIColor(red: 238/285, green: 238/285, blue: 238/285)
+        sender.setTitleColor(UIColor.black, for: .normal)
+       }
    }
 }

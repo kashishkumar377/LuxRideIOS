@@ -95,6 +95,8 @@ class CarDetailTwoViewController: BaseClassVC,SelectionListVCsDelegate {
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.delegateRef = self
     targetVC?.tableType = "Door"
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
     self.navigationController?.present(targetVC!, animated: true)
   }
   @IBAction func actionSeat(_ sender: Any) {
@@ -102,6 +104,8 @@ class CarDetailTwoViewController: BaseClassVC,SelectionListVCsDelegate {
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.delegateRef = self
     targetVC?.tableType = "Seat"
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
     self.navigationController?.present(targetVC!, animated: true)
   }
 
@@ -110,6 +114,8 @@ class CarDetailTwoViewController: BaseClassVC,SelectionListVCsDelegate {
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.delegateRef = self
     targetVC?.tableType = "Fuel"
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
     self.navigationController?.present(targetVC!, animated: true)
   }
 
@@ -118,13 +124,18 @@ class CarDetailTwoViewController: BaseClassVC,SelectionListVCsDelegate {
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.delegateRef = self
     targetVC?.tableType = "Miles"
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
     self.navigationController?.present(targetVC!, animated: true)
   }
+  
   @IBAction func actionOdo(_ sender: Any) {
     let sb = UIStoryboard(name: Constant.AppStoryBoard.OwnerStoryboard.rawValue, bundle: nil)
     let targetVC = sb.instantiateViewController(withIdentifier: "CarNameCompaniesVC") as? CarNameCompaniesVC
     targetVC?.delegateRef = self
     targetVC?.tableType = "Odo"
+    targetVC?.modalPresentationStyle = .overCurrentContext
+    targetVC?.modalTransitionStyle = .crossDissolve
     self.navigationController?.present(targetVC!, animated: true)
   }
 
